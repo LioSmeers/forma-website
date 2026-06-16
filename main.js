@@ -1,20 +1,20 @@
 const packageDetails = {
   starter: {
     title: "Starter Website",
-    price: "Vanaf €350 setup + €49/mnd",
+    price: "Vanaf €300 setup + €19/mnd",
     description: "Voor kleine zelfstandigen die snel professioneel online willen staan.",
     benefits: ["1 pagina", "Mobielvriendelijk ontwerp", "30 minuten onderhoud per maand"],
   },
   local: {
     title: "Local Business Website",
     badge: "Aanbevolen",
-    price: "Vanaf €550 setup + €79/mnd",
+    price: "Vanaf €500 setup + €49/mnd",
     description: "Voor lokale bedrijven die een duidelijke bedrijfswebsite nodig hebben.",
     benefits: ["3 tot 4 pagina's", "Contactformulier en Google Maps", "1 uur onderhoud per maand"],
   },
   content: {
     title: "Website + Content",
-    price: "Vanaf €700 setup + €149/mnd",
+    price: "Vanaf €700 setup + €69/mnd",
     description: "Voor bedrijven die naast een website ook sterker zichtbaar willen zijn op sociale media.",
     benefits: ["4 tot 5 pagina's", "2 korte social media edits per maand", "2 uur onderhoud per maand"],
   },
