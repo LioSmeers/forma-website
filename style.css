@@ -10,11 +10,11 @@
   --color-dark: #0f172a;
   --color-error: #dc2626;
   --color-success: #15803d;
-  --radius-card: 1.5rem;
+  --radius-card: 1.35rem;
   --radius-pill: 999px;
   --shadow-soft: 0 22px 70px rgba(15, 23, 42, 0.08);
   --shadow-hover: 0 34px 90px rgba(15, 23, 42, 0.14);
-  --section-padding: clamp(4.5rem, 8vw, 8rem);
+  --section-padding: clamp(4rem, 8vw, 7rem);
   --container-width: 1180px;
 }
 
@@ -86,11 +86,7 @@ img {
   top: 0;
   border-bottom: 1px solid transparent;
   background: color-mix(in srgb, var(--color-bg), transparent 8%);
-  transition:
-    border-color 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease,
-    backdrop-filter 180ms ease;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, backdrop-filter 180ms ease;
 }
 
 .site-header.is-scrolled {
@@ -124,13 +120,13 @@ img {
 }
 
 .brand-logo-header {
-  height: 3.55rem;
-  max-width: 10.8rem;
+  height: 3.7rem;
+  max-width: 11rem;
 }
 
 .brand-logo-footer {
-  height: 4.5rem;
-  max-width: 13rem;
+  height: 4.7rem;
+  max-width: 14rem;
 }
 
 .desktop-nav,
@@ -208,12 +204,7 @@ img {
   line-height: 1;
   text-align: center;
   text-decoration: none;
-  transition:
-    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    color 180ms ease;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
 }
 
 .pill-button::after,
@@ -222,7 +213,7 @@ img {
 .outline-button::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.34) 48%, transparent 76%);
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.34) 48%, transparent 76%);
   content: "";
   transform: translateX(-120%);
   transition: transform 520ms ease;
@@ -297,9 +288,7 @@ img {
   height: 2px;
   border-radius: var(--radius-pill);
   background: var(--color-text);
-  transition:
-    transform 180ms ease,
-    opacity 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 
 .menu-toggle.is-open span:nth-child(1) {
@@ -319,9 +308,7 @@ img {
   max-height: 0;
   overflow: hidden;
   border-bottom: 1px solid transparent;
-  transition:
-    max-height 220ms ease,
-    border-color 220ms ease;
+  transition: max-height 220ms ease, border-color 220ms ease;
 }
 
 .mobile-menu.is-open {
@@ -425,10 +412,7 @@ p {
 }
 
 .hover-lift {
-  transition:
-    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 200ms ease,
-    border-color 200ms ease;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms ease, border-color 200ms ease;
 }
 
 .hover-lift:hover,
@@ -479,9 +463,21 @@ p {
   object-fit: cover;
 }
 
-.hero-stats {
+.hero-stats,
+.services-grid,
+.pricing-grid,
+.contact-grid,
+.benefit-list,
+.contact-list {
   display: grid;
+}
+
+.hero-stats,
+.services-grid,
+.pricing-grid,
+.contact-grid {
   gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
 .stat-card {
@@ -507,12 +503,6 @@ p {
 .stat-card p {
   margin-top: 0.7rem;
   font-size: 0.96rem;
-}
-
-.services-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
 }
 
 .service-card {
@@ -560,6 +550,13 @@ p {
   padding: 0.55rem 0.7rem;
 }
 
+.badge {
+  flex: 0 0 auto;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding: 0.55rem 0.7rem;
+}
+
 .service-image,
 .service-thumb {
   width: 100%;
@@ -575,12 +572,6 @@ p {
   height: 8.5rem;
 }
 
-.pricing-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
-}
-
 .pricing-card {
   display: flex;
   min-height: 34rem;
@@ -588,21 +579,15 @@ p {
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(1.35rem, 3vw, 1.8rem);
-  transition:
-    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 200ms ease,
-    border-color 200ms ease,
-    background 200ms ease;
   transform-origin: center bottom;
+  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms ease, border-color 200ms ease, background 200ms ease;
 }
 
 .pricing-card:hover {
   z-index: 8;
   cursor: pointer;
   border-color: var(--color-accent);
-  background:
-    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-    linear-gradient(140deg, var(--color-accent), color-mix(in srgb, var(--color-accent), transparent 82%)) border-box;
+  background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box, linear-gradient(140deg, var(--color-accent), color-mix(in srgb, var(--color-accent), transparent 82%)) border-box;
   box-shadow: 0 30px 90px color-mix(in srgb, var(--color-accent), transparent 78%);
 }
 
@@ -616,13 +601,6 @@ p {
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.8rem;
-}
-
-.badge {
-  flex: 0 0 auto;
-  background: var(--color-accent-soft);
-  color: var(--color-accent);
-  padding: 0.55rem 0.7rem;
 }
 
 .price {
@@ -639,7 +617,6 @@ p {
 
 .benefit-list,
 .contact-list {
-  display: grid;
   gap: 0.8rem;
   margin: 0;
   padding: 0;
@@ -671,12 +648,6 @@ p {
 
 .contact-section {
   padding-bottom: clamp(3.5rem, 7vw, 6rem);
-}
-
-.contact-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
 }
 
 .contact-info-card {
@@ -760,10 +731,7 @@ p {
   background: var(--color-surface-soft);
   color: var(--color-text);
   padding: 0.95rem 1rem;
-  transition:
-    border-color 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .form-row textarea {
@@ -834,9 +802,7 @@ p {
   display: grid;
   place-items: center;
   overflow-y: auto;
-  background:
-    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--color-accent), transparent 74%), transparent 34rem),
-    rgba(250, 251, 252, 0.72);
+  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--color-accent), transparent 74%), transparent 34rem), rgba(250, 251, 252, 0.72);
   padding: 1rem;
   backdrop-filter: blur(18px);
   animation: spotlight-fade 180ms ease both;
@@ -852,9 +818,7 @@ p {
   border: 1px solid color-mix(in srgb, var(--color-accent), var(--color-border) 30%);
   border-radius: var(--radius-card);
   background: var(--color-surface);
-  box-shadow:
-    0 42px 120px rgba(15, 23, 42, 0.2),
-    0 18px 58px color-mix(in srgb, var(--color-accent), transparent 80%);
+  box-shadow: 0 42px 120px rgba(15, 23, 42, 0.2), 0 18px 58px color-mix(in srgb, var(--color-accent), transparent 80%);
   padding: clamp(1.35rem, 4vw, 2.2rem);
   animation: spotlight-pop 360ms cubic-bezier(0.2, 0.85, 0.2, 1) both;
 }
@@ -909,9 +873,7 @@ p {
 .reveal {
   opacity: 0;
   transform: translateY(22px);
-  transition:
-    opacity 520ms ease,
-    transform 520ms ease;
+  transition: opacity 520ms ease, transform 520ms ease;
 }
 
 .reveal.is-visible {
@@ -950,10 +912,6 @@ p {
 
   .hero-grid {
     grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr;
   }
 
   .hero-card {
@@ -996,6 +954,11 @@ p {
     display: none;
   }
 
+  .brand-logo-header {
+    height: 3.1rem;
+    max-width: 9.2rem;
+  }
+
   .hero-card,
   .service-card-featured {
     min-height: 0;
@@ -1008,10 +971,6 @@ p {
   .primary-button,
   .secondary-button {
     width: 100%;
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr;
   }
 
   .contact-info-card {
