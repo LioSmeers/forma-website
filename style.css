@@ -595,6 +595,91 @@ p {
   transform: translateY(-0.35rem) scale(1.006);
 }
 
+.reviews-section {
+  overflow: hidden;
+  --section-padding: clamp(2.6rem, 5vw, 4rem);
+}
+
+.review-marquee {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--color-surface), transparent 18%);
+  padding-block: 0.6rem;
+}
+
+.review-marquee::before,
+.review-marquee::after {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: min(8rem, 22vw);
+  content: "";
+  pointer-events: none;
+}
+
+.review-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--color-surface-soft), transparent);
+}
+
+.review-marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--color-surface-soft), transparent);
+}
+
+.review-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: review-marquee 18s linear infinite;
+}
+
+.review-shot {
+  width: min(40rem, calc(100vw - 3rem));
+  flex: 0 0 auto;
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius-card) - 0.65rem);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.review-marquee:hover .review-track {
+  animation-play-state: paused;
+}
+
+.trustpilot-strip {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius-card) - 0.45rem);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  font-weight: 900;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.trustpilot-strip:hover {
+  border-color: color-mix(in srgb, var(--color-accent), var(--color-border) 45%);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.trustpilot-star {
+  color: #00b67a;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
 .pricing-title-row {
   display: flex;
   min-width: 0;
@@ -900,6 +985,15 @@ p {
   }
 }
 
+@keyframes review-marquee {
+  from {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
@@ -976,6 +1070,7 @@ p {
   .contact-info-card {
     min-height: 28rem;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -991,5 +1086,9 @@ p {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .review-track {
+    animation: none;
   }
 }
