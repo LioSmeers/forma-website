@@ -9,6 +9,8 @@ const packageDetails = {
 			"Mobielvriendelijk ontwerp",
 			"30 minuten onderhoud per maand",
 		],
+		inquiryMessage:
+			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Starter Website pakket. Ik wil graag meer informatie over de opstart, de maandelijkse kost en wat jullie nodig hebben om te beginnen.\n\nAlvast bedankt!",
 	},
 	local: {
 		title: "Local Business Website",
@@ -21,6 +23,8 @@ const packageDetails = {
 			"Contactformulier en Google Maps",
 			"1 uur onderhoud per maand",
 		],
+		inquiryMessage:
+			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Local Business Website pakket. Ik wil graag bespreken hoe jullie mijn bedrijf online kunnen zetten met meerdere pagina's, een contactformulier en Google Maps.\n\nAlvast bedankt!",
 	},
 	content: {
 		title: "Website + Content",
@@ -32,6 +36,8 @@ const packageDetails = {
 			"2 korte social media edits per maand",
 			"2 uur onderhoud per maand",
 		],
+		inquiryMessage:
+			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Website + Content pakket. Ik wil graag meer informatie over een website in combinatie met social media content en maandelijks onderhoud.\n\nAlvast bedankt!",
 	},
 };
 
@@ -49,6 +55,7 @@ const spotlightClose = document.querySelector(".spotlight-close");
 const spotlightBack = document.querySelector(".spotlight-back");
 const contactForm = document.querySelector(".contact-form");
 const year = document.querySelector("#year");
+let activePackageKey = "";
 
 year.textContent = new Date().getFullYear();
 
@@ -100,6 +107,7 @@ function openSpotlight(packageKey) {
 	const item = packageDetails[packageKey];
 	if (!item) return;
 
+	activePackageKey = packageKey;
 	spotlight.querySelector("#spotlight-title").textContent = item.title;
 	spotlight.querySelector(".spotlight-price").textContent = item.price;
 	spotlight.querySelector(".spotlight-description").textContent =
@@ -124,6 +132,20 @@ function openSpotlight(packageKey) {
 function closeSpotlight() {
 	spotlight.hidden = true;
 	document.body.style.overflow = "";
+}
+
+function fillPackageMessage(packageKey) {
+	const item = packageDetails[packageKey];
+	const messageField = contactForm.elements.message;
+	if (!item || !messageField) return;
+
+	messageField.value = item.inquiryMessage;
+	setError("message", "");
+	contactForm.querySelector(".success-message").hidden = true;
+
+	window.setTimeout(() => {
+		messageField.focus({ preventScroll: true });
+	}, 220);
 }
 
 function setError(field, message) {
@@ -222,7 +244,9 @@ spotlightBack.addEventListener("click", closeSpotlight);
 spotlight
 	.querySelector("[data-target='contact']")
 	.addEventListener("click", () => {
+		const selectedPackageKey = activePackageKey;
 		closeSpotlight();
+		fillPackageMessage(selectedPackageKey);
 		window.setTimeout(() => scrollToSection("contact"), 120);
 	});
 
