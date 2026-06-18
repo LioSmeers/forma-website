@@ -10,7 +10,7 @@ const packageDetails = {
 			"30 minuten onderhoud per maand",
 		],
 		inquiryMessage:
-			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Starter Website pakket. Ik wil graag meer informatie over de opstart, de maandelijkse kost en wat jullie nodig hebben om te beginnen.\n\nAlvast bedankt!",
+			"Hallo BMA studio,\n\nIk ben geïnteresseerd in het Starter Website pakket. Ik wil graag meer informatie over de opstart, de maandelijkse kost en wat jullie nodig hebben om te beginnen.\n\nAlvast bedankt!",
 	},
 	local: {
 		title: "Local Business Website",
@@ -24,7 +24,7 @@ const packageDetails = {
 			"1 uur onderhoud per maand",
 		],
 		inquiryMessage:
-			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Local Business Website pakket. Ik wil graag bespreken hoe jullie mijn bedrijf online kunnen zetten met meerdere pagina's, een contactformulier en Google Maps.\n\nAlvast bedankt!",
+			"Hallo BMA studio,\n\nIk ben geïnteresseerd in het Local Business Website pakket. Ik wil graag bespreken hoe jullie mijn bedrijf online kunnen zetten met meerdere pagina's, een contactformulier en Google Maps.\n\nAlvast bedankt!",
 	},
 	content: {
 		title: "Website + Content",
@@ -37,7 +37,7 @@ const packageDetails = {
 			"2 uur onderhoud per maand",
 		],
 		inquiryMessage:
-			"Hallo BMAstudio,\n\nIk ben geïnteresseerd in het Website + Content pakket. Ik wil graag meer informatie over een website in combinatie met social media content en maandelijks onderhoud.\n\nAlvast bedankt!",
+			"Hallo BMA studio,\n\nIk ben geïnteresseerd in het Website + Content pakket. Ik wil graag meer informatie over een website in combinatie met social media content en maandelijks onderhoud.\n\nAlvast bedankt!",
 	},
 };
 
