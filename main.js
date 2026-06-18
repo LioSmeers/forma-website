@@ -61,6 +61,7 @@ const contactSubmit = contactForm.querySelector("[type='submit']");
 const contactStatus = contactForm.querySelector(".success-message");
 const year = document.querySelector("#year");
 let activePackageKey = "";
+let scrollUpdateQueued = false;
 
 year.textContent = new Date().getFullYear();
 
@@ -85,11 +86,15 @@ function scrollToSection(id) {
 }
 
 function updateScrollState() {
-	const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+	const maxScroll =
+		document.documentElement.scrollHeight - document.documentElement.clientHeight;
 	const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
 
 	header.classList.toggle("is-scrolled", window.scrollY > 14);
-	progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+	document.documentElement.style.setProperty(
+		"--scroll-progress",
+		String(clampNumber(progress, 0, 1)),
+	);
 	updateHeroTransition();
 
 	const activeId = ["diensten", "pakketten", "contact", "reviews"].reduce(
@@ -104,6 +109,16 @@ function updateScrollState() {
 
 	document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((link) => {
 		link.classList.toggle("is-active", link.dataset.target === activeId);
+	});
+}
+
+function scheduleScrollStateUpdate() {
+	if (scrollUpdateQueued) return;
+
+	scrollUpdateQueued = true;
+	window.requestAnimationFrame(() => {
+		scrollUpdateQueued = false;
+		updateScrollState();
 	});
 }
 
@@ -380,6 +395,49 @@ function setupPagePressure() {
 	window.addEventListener("blur", resetTarget);
 }
 
+function setupCursorGlow() {
+	const glow = document.querySelector(".cursor-glow");
+	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	if (!glow || !canHover || prefersReducedMotion) return;
+
+	let pointerX = window.innerWidth / 2;
+	let pointerY = window.innerHeight / 2;
+	let glowX = pointerX;
+	let glowY = pointerY;
+	let animationFrame = 0;
+
+	const renderGlow = () => {
+		glowX += (pointerX - glowX) * 0.2;
+		glowY += (pointerY - glowY) * 0.2;
+		glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate3d(-50%, -50%, 0)`;
+		animationFrame = window.requestAnimationFrame(renderGlow);
+	};
+
+	window.addEventListener(
+		"pointermove",
+		(event) => {
+			pointerX = event.clientX;
+			pointerY = event.clientY;
+			document.body.classList.add("has-cursor-glow");
+
+			if (!animationFrame) renderGlow();
+		},
+		{ passive: true },
+	);
+
+	window.addEventListener("pointerleave", () => {
+		document.body.classList.remove("has-cursor-glow");
+	});
+
+	window.addEventListener("blur", () => {
+		document.body.classList.remove("has-cursor-glow");
+	});
+}
+
 function setupPortfolioToggle() {
 	if (!portfolioToggle || !portfolioProjects) return;
 
@@ -437,7 +495,7 @@ window.addEventListener("keydown", (event) => {
 	if (event.key === "Escape" && !spotlight.hidden) closeSpotlight();
 });
 
-window.addEventListener("scroll", updateScrollState, { passive: true });
+window.addEventListener("scroll", scheduleScrollStateUpdate, { passive: true });
 window.addEventListener("resize", updateScrollState);
 
 contactForm.addEventListener("input", (event) => {
@@ -483,5 +541,6 @@ contactForm.addEventListener("submit", async (event) => {
 setupReveal();
 setupPhonePointerEffect();
 setupPagePressure();
+setupCursorGlow();
 setupPortfolioToggle();
 updateScrollState();

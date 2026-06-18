@@ -39,6 +39,27 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.cursor-glow {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 180ms ease;
+  will-change: transform, opacity;
+}
+
+body.has-cursor-glow .cursor-glow {
+  opacity: 0.34;
+}
+
 button,
 input,
 textarea {
@@ -102,9 +123,12 @@ a.is-pressure-active {
   width: 100%;
   height: 3px;
   background: var(--color-accent);
-  transform: scaleX(0);
+  backface-visibility: hidden;
+  contain: layout paint;
+  transform: scale3d(var(--scroll-progress, 0), 1, 1);
   transform-origin: left center;
-  transition: transform 160ms ease-out;
+  transition: none;
+  will-change: transform;
 }
 
 .site-header {
@@ -419,6 +443,39 @@ a.is-pressure-active {
   filter: blur(var(--hero-fade-blur));
   transform: translateY(var(--hero-fade-y));
   transition: opacity 80ms linear, filter 80ms linear, transform 80ms linear;
+}
+
+.hero-ticker {
+  width: min(62rem, 100%);
+  overflow: hidden;
+  padding-block: 0.2rem;
+}
+
+.hero-ticker-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 1.35rem;
+  color: var(--color-text);
+  font-size: 0.84rem;
+  font-weight: 850;
+  white-space: nowrap;
+  animation: hero-ticker 24s linear infinite;
+}
+
+.hero-ticker-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-ticker-track span::before {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  content: "";
+  opacity: 0.72;
 }
 
 .phone-section {
@@ -1195,11 +1252,16 @@ p {
 .contact-bg {
   width: 100%;
   height: 100%;
+  filter: blur(2px) saturate(0.8);
   object-fit: cover;
+  opacity: 0.72;
+  transform: scale(1.02);
 }
 
 .contact-overlay {
-  background: linear-gradient(90deg, color-mix(in srgb, var(--color-dark), transparent 6%), color-mix(in srgb, var(--color-dark), transparent 45%));
+  background:
+    linear-gradient(90deg, rgba(11, 17, 28, 0.94), rgba(11, 17, 28, 0.68)),
+    linear-gradient(180deg, rgba(11, 17, 28, 0.22), rgba(11, 17, 28, 0.78));
 }
 
 .contact-info-content {
@@ -1460,6 +1522,15 @@ p {
   }
 }
 
+@keyframes hero-ticker {
+  from {
+    transform: translateX(calc(-50% - 0.675rem));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
@@ -1591,6 +1662,12 @@ p {
   .review-track {
     animation: review-marquee 30s linear infinite !important;
     animation-duration: 30s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .hero-ticker-track {
+    animation: hero-ticker 24s linear infinite !important;
+    animation-duration: 24s !important;
     animation-iteration-count: infinite !important;
   }
 }
