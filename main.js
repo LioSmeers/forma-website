@@ -43,6 +43,7 @@ const packageDetails = {
 
 const header = document.querySelector(".site-header");
 const progressBar = document.querySelector(".scroll-progress");
+const heroSection = document.querySelector(".hero-section");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const navButtons = document.querySelectorAll(
@@ -53,6 +54,8 @@ const spotlight = document.querySelector(".package-spotlight");
 const spotlightCard = document.querySelector(".spotlight-card");
 const spotlightClose = document.querySelector(".spotlight-close");
 const spotlightBack = document.querySelector(".spotlight-back");
+const portfolioToggle = document.querySelector("[data-portfolio-toggle]");
+const portfolioProjects = document.querySelector("#portfolio-projects");
 const contactForm = document.querySelector(".contact-form");
 const contactSubmit = contactForm.querySelector("[type='submit']");
 const contactStatus = contactForm.querySelector(".success-message");
@@ -60,6 +63,10 @@ const year = document.querySelector("#year");
 let activePackageKey = "";
 
 year.textContent = new Date().getFullYear();
+
+function clampNumber(value, min, max) {
+	return Math.min(max, Math.max(min, value));
+}
 
 function scrollToSection(id) {
 	const section = document.getElementById(id);
@@ -83,6 +90,7 @@ function updateScrollState() {
 
 	header.classList.toggle("is-scrolled", window.scrollY > 14);
 	progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+	updateHeroTransition();
 
 	const activeId = ["diensten", "pakketten", "contact", "reviews"].reduce(
 		(current, id) => {
@@ -97,6 +105,24 @@ function updateScrollState() {
 	document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((link) => {
 		link.classList.toggle("is-active", link.dataset.target === activeId);
 	});
+}
+
+function updateHeroTransition() {
+	if (!heroSection) return;
+
+	const fadeDistance = clampNumber(heroSection.offsetHeight * 0.82, 360, 680);
+	const fadeProgress = clampNumber((window.scrollY - 45) / fadeDistance, 0, 1);
+	const opacity = 1 - fadeProgress;
+
+	heroSection.style.setProperty("--hero-fade-opacity", opacity.toFixed(3));
+	heroSection.style.setProperty(
+		"--hero-fade-blur",
+		`${(fadeProgress * 10).toFixed(2)}px`,
+	);
+	heroSection.style.setProperty(
+		"--hero-fade-y",
+		`${(-fadeProgress * 1.4).toFixed(2)}rem`,
+	);
 }
 
 function closeMenu() {
@@ -228,6 +254,150 @@ function setupReveal() {
 	revealItems.forEach((item) => observer.observe(item));
 }
 
+function setupPhonePointerEffect() {
+	const phone = document.querySelector(".iphone-shell");
+	const phoneSection = document.querySelector(".phone-section");
+	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	if (!phone || !phoneSection || !canHover || prefersReducedMotion) return;
+
+	const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+	const resetPhone = () => {
+		phone.classList.remove("is-pointer-active");
+		phone.style.setProperty("--phone-press", "0px");
+		phone.style.setProperty("--phone-tilt-x", "0deg");
+		phone.style.setProperty("--phone-tilt-y", "0deg");
+		phone.style.setProperty("--phone-glow", "0");
+	};
+
+	const movePhone = (event) => {
+		const sectionRect = phoneSection.getBoundingClientRect();
+		const isSectionVisible =
+			sectionRect.top < window.innerHeight && sectionRect.bottom > 0;
+
+		if (!isSectionVisible) {
+			resetPhone();
+			return;
+		}
+
+		const rect = phone.getBoundingClientRect();
+		const x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+		const y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+		const tiltY = (x - 0.5) * 9;
+		const tiltX = (0.5 - y) * 7;
+
+		phone.classList.add("is-pointer-active");
+		phone.style.setProperty("--phone-press", "4px");
+		phone.style.setProperty("--phone-tilt-x", `${tiltX.toFixed(2)}deg`);
+		phone.style.setProperty("--phone-tilt-y", `${tiltY.toFixed(2)}deg`);
+		phone.style.setProperty("--phone-light-x", `${Math.round(x * 100)}%`);
+		phone.style.setProperty("--phone-light-y", `${Math.round(y * 100)}%`);
+		phone.style.setProperty("--phone-glow", "1");
+	};
+
+	window.addEventListener("pointermove", movePhone, { passive: true });
+	window.addEventListener("mousemove", movePhone, { passive: true });
+	window.addEventListener("pointerleave", resetPhone);
+	window.addEventListener("blur", resetPhone);
+}
+
+function setupPagePressure() {
+	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	if (!canHover || prefersReducedMotion) return;
+
+	let activeTarget = null;
+	const pressureSelector = [
+		".card",
+		".contact-info-card",
+		".trustpilot-strip",
+		".phone-info",
+		"button",
+		"a",
+	].join(", ");
+
+	const resetTarget = () => {
+		if (!activeTarget) return;
+
+		activeTarget.classList.remove("is-pressure-active");
+		activeTarget.style.removeProperty("--surface-press");
+		activeTarget.style.removeProperty("--surface-tilt-x");
+		activeTarget.style.removeProperty("--surface-tilt-y");
+		activeTarget = null;
+	};
+
+	window.addEventListener(
+		"pointermove",
+		(event) => {
+			const targetElement =
+				event.target instanceof Element ? event.target : null;
+
+			if (targetElement?.closest(".contact-section, .portfolio-section")) {
+				resetTarget();
+				return;
+			}
+
+			const target = targetElement?.closest(pressureSelector);
+
+			if (!target) {
+				resetTarget();
+				return;
+			}
+
+			if (activeTarget && activeTarget !== target) resetTarget();
+
+			activeTarget = target;
+			const rect = activeTarget.getBoundingClientRect();
+			const x = (event.clientX - rect.left) / rect.width;
+			const y = (event.clientY - rect.top) / rect.height;
+			const tiltX = (0.5 - y) * 4;
+			const tiltY = (x - 0.5) * 5;
+
+			activeTarget.classList.add("is-pressure-active");
+			activeTarget.style.setProperty("--surface-press", "2px");
+			activeTarget.style.setProperty("--surface-tilt-x", `${tiltX.toFixed(2)}deg`);
+			activeTarget.style.setProperty("--surface-tilt-y", `${tiltY.toFixed(2)}deg`);
+		},
+		{ passive: true },
+	);
+
+	window.addEventListener("pointerdown", () => {
+		if (activeTarget) activeTarget.style.setProperty("--surface-press", "4px");
+	});
+
+	window.addEventListener("pointerup", () => {
+		if (activeTarget) activeTarget.style.setProperty("--surface-press", "2px");
+	});
+
+	window.addEventListener("pointerleave", resetTarget);
+	window.addEventListener("blur", resetTarget);
+}
+
+function setupPortfolioToggle() {
+	if (!portfolioToggle || !portfolioProjects) return;
+
+	portfolioToggle.addEventListener("click", () => {
+		const isOpen = !portfolioProjects.hidden;
+
+		portfolioProjects.hidden = isOpen;
+		portfolioToggle.setAttribute("aria-expanded", String(!isOpen));
+		portfolioToggle.textContent = isOpen ? "Bekijk projecten" : "Verberg projecten";
+
+		if (!isOpen) {
+			portfolioProjects.querySelectorAll(".reveal").forEach((item) => {
+				item.classList.add("is-visible");
+			});
+		}
+	});
+}
+
 document.querySelector("[data-scroll-top]").addEventListener("click", () => {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 });
@@ -311,4 +481,7 @@ contactForm.addEventListener("submit", async (event) => {
 });
 
 setupReveal();
+setupPhonePointerEffect();
+setupPagePressure();
+setupPortfolioToggle();
 updateScrollState();
