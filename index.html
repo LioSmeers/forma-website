@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=20260618-contact-web-photo" />
+    <link rel="stylesheet" href="./style.css?v=20260618-portfolio-blue" />
   </head>
   <body>
     <div class="cursor-glow" aria-hidden="true"></div>
@@ -30,6 +30,7 @@
 
         <nav class="desktop-nav" aria-label="Hoofdnavigatie">
           <button class="nav-link" type="button" data-target="diensten">Diensten</button>
+          <button class="nav-link" type="button" data-target="portfolio">Portfolio</button>
           <button class="nav-link" type="button" data-target="pakketten">Pakketten</button>
           <button class="nav-link" type="button" data-target="contact">Contact</button>
           <button class="nav-link" type="button" data-target="reviews">Reviews</button>
@@ -48,6 +49,7 @@
       <div class="mobile-menu">
         <div class="container mobile-menu-inner">
           <button class="mobile-nav-link" type="button" data-target="diensten">Diensten</button>
+          <button class="mobile-nav-link" type="button" data-target="portfolio">Portfolio</button>
           <button class="mobile-nav-link" type="button" data-target="pakketten">Pakketten</button>
           <button class="mobile-nav-link" type="button" data-target="contact">Contact</button>
           <button class="mobile-nav-link" type="button" data-target="reviews">Reviews</button>
@@ -208,7 +210,7 @@
         </div>
       </section>
 
-      <section class="section portfolio-section" aria-labelledby="portfolio-title">
+      <section class="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
         <div class="container">
           <div class="portfolio-intro reveal">
             <div>
@@ -221,15 +223,15 @@
             <button
               class="primary-button portfolio-toggle"
               type="button"
-              aria-expanded="false"
+              aria-expanded="true"
               aria-controls="portfolio-projects"
               data-portfolio-toggle
             >
-              Bekijk projecten
+              Verberg projecten
             </button>
           </div>
 
-          <div class="portfolio-projects" id="portfolio-projects" hidden>
+          <div class="portfolio-projects" id="portfolio-projects">
             <article class="card portfolio-card reveal">
               <div class="portfolio-copy">
                 <span class="service-number">01</span>
@@ -488,6 +490,6 @@
       </article>
     </div>
 
-    <script src="./main.js?v=20260618-cursor-glow"></script>
+    <script src="./main.js?v=20260618-portfolio-blue"></script>
   </body>
 </html>

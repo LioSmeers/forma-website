@@ -97,7 +97,7 @@ function updateScrollState() {
 	);
 	updateHeroTransition();
 
-	const activeId = ["diensten", "pakketten", "contact", "reviews"].reduce(
+	const activeId = ["diensten", "portfolio", "pakketten", "contact", "reviews"].reduce(
 		(current, id) => {
 			const section = document.getElementById(id);
 			return section && section.getBoundingClientRect().top <= 180
