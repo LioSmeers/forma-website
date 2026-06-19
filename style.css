@@ -826,7 +826,7 @@ p {
   font-weight: 950;
 }
 
-.iphone-point h2 {
+.iphone-point h3 {
   font-size: clamp(0.94rem, 1.3vw, 1.08rem);
   line-height: 1.18;
 }
