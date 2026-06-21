@@ -146,6 +146,7 @@ function closeMenu() {
 	menuToggle.classList.remove("is-open");
 	menuToggle.setAttribute("aria-expanded", "false");
 	mobileMenu.classList.remove("is-open");
+	document.body.classList.remove("menu-open");
 }
 
 function openSpotlight(packageKey) {
@@ -486,6 +487,7 @@ menuToggle?.addEventListener("click", () => {
 	menuToggle.classList.toggle("is-open", isOpen);
 	menuToggle.setAttribute("aria-expanded", String(isOpen));
 	mobileMenu.classList.toggle("is-open", isOpen);
+	document.body.classList.toggle("menu-open", isOpen);
 });
 
 navButtons.forEach((button) => {
