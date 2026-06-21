@@ -44,7 +44,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=20260618-portfolio-blue" />
+    <link rel="stylesheet" href="./style.css?v=20260621-flow" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -112,20 +112,21 @@
 
     <header class="site-header">
       <div class="container header-inner">
-        <button class="brand-lockup" type="button" data-scroll-top aria-label="Ga naar boven">
+        <a class="brand-lockup" href="./index.html" aria-label="Ga naar de homepage">
           <img src="./public/logo-bma.svg" alt="BMA Studio" class="brand-logo brand-logo-header" />
-        </button>
+        </a>
 
         <nav class="desktop-nav" aria-label="Hoofdnavigatie">
-          <button class="nav-link" type="button" data-target="diensten">Diensten</button>
-          <button class="nav-link" type="button" data-target="portfolio">Portfolio</button>
-          <button class="nav-link" type="button" data-target="pakketten">Pakketten</button>
-          <button class="nav-link" type="button" data-target="contact">Contact</button>
-          <button class="nav-link" type="button" data-target="reviews">Reviews</button>
+          <a class="nav-link is-active" href="./index.html">Home</a>
+          <a class="nav-link" href="./pakketten.html">Pakketten</a>
+          <a class="nav-link" href="./diensten.html">Diensten</a>
+          <a class="nav-link" href="./portfolio.html">Portfolio</a>
+          <a class="nav-link" href="./over-ons.html">Over ons</a>
+          <a class="nav-link" href="./contact.html">Contact</a>
         </nav>
 
         <div class="header-actions">
-          <button class="pill-button header-cta" type="button" data-target="contact">Vraag info aan</button>
+          <a class="pill-button header-cta" href="./contact.html">Vraag info aan</a>
           <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
             <span></span>
             <span></span>
@@ -136,12 +137,13 @@
 
       <div class="mobile-menu">
         <div class="container mobile-menu-inner">
-          <button class="mobile-nav-link" type="button" data-target="diensten">Diensten</button>
-          <button class="mobile-nav-link" type="button" data-target="portfolio">Portfolio</button>
-          <button class="mobile-nav-link" type="button" data-target="pakketten">Pakketten</button>
-          <button class="mobile-nav-link" type="button" data-target="contact">Contact</button>
-          <button class="mobile-nav-link" type="button" data-target="reviews">Reviews</button>
-          <button class="pill-button" type="button" data-target="contact">Vraag info aan</button>
+          <a class="mobile-nav-link is-active" href="./index.html">Home</a>
+          <a class="mobile-nav-link" href="./pakketten.html">Pakketten</a>
+          <a class="mobile-nav-link" href="./diensten.html">Diensten</a>
+          <a class="mobile-nav-link" href="./portfolio.html">Portfolio</a>
+          <a class="mobile-nav-link" href="./over-ons.html">Over ons</a>
+          <a class="mobile-nav-link" href="./contact.html">Contact</a>
+          <a class="pill-button" href="./contact.html">Vraag info aan</a>
         </div>
       </div>
     </header>
@@ -170,8 +172,8 @@
               </p>
 
               <div class="button-row">
-                <button class="primary-button" type="button" data-target="pakketten">Bekijk pakketten</button>
-                <button class="secondary-button" type="button" data-target="contact">Vraag info aan</button>
+                <a class="primary-button" href="./pakketten.html">Bekijk pakketten</a>
+                <a class="secondary-button" href="./contact.html">Vraag info aan</a>
               </div>
             </div>
 
@@ -184,7 +186,7 @@
         <div class="container">
           <div class="phone-stage">
             <div class="phone-info phone-info-left reveal">
-              <span class="eyebrow">Over ons</span>
+              <span class="eyebrow">Basis</span>
               <h2>Gebouwd voor ondernemers die vooruit willen.</h2>
               <p>
                 We maken websites die duidelijk zijn, snel laden en meteen tonen waarom klanten voor jou moeten kiezen.
@@ -229,7 +231,7 @@
             </aside>
 
             <div class="phone-info phone-info-right reveal">
-              <span class="eyebrow">Onze aanpak</span>
+              <span class="eyebrow">Werkwijze</span>
               <h2>Strak, persoonlijk en zonder gedoe.</h2>
               <p>
                 We denken mee over je aanbod, houden je website netjes bij en reageren dezelfde dag op je aanvraag.
@@ -239,392 +241,45 @@
         </div>
       </section>
 
-      <section class="section section-soft" id="diensten" aria-labelledby="services-title">
+      <section class="section section-soft" aria-labelledby="quick-routes-title">
         <div class="container">
           <div class="section-heading reveal">
-            <span class="eyebrow">Diensten</span>
-            <h2 id="services-title">Een volledige online basis.</h2>
+            <span class="eyebrow">Kies je route</span>
+            <h2 id="quick-routes-title">Ga meteen naar wat je zoekt.</h2>
           </div>
 
-          <div class="services-grid">
-            <article class="card service-card service-card-featured hover-lift reveal">
-              <div>
-                <span class="service-number">01</span>
-                <h3>Websites</h3>
-                <p>Duidelijke, mobiele websites die tonen wie je bent, wat je aanbiedt en hoe klanten je bereiken.</p>
-              </div>
-              <div class="tag-row">
-                <span class="tag">Webdesign</span>
-                <span class="tag">Mobile-first</span>
-                <span class="tag">SEO basis</span>
-              </div>
-              <ul class="service-points">
-                <li><span>01</span> Heldere structuur en copy</li>
-                <li><span>02</span> Snelle mobiele pagina's</li>
-                <li><span>03</span> Klaar om aanvragen te krijgen</li>
-              </ul>
-            </article>
-
-            <article class="card service-card hover-lift reveal">
-              <div>
-                <span class="service-number">02</span>
-                <h3>Onderhoud</h3>
-                <p>Maandelijkse updates, kleine aanpassingen en technische controle zodat je site professioneel blijft.</p>
-              </div>
-              <div class="tag-row">
-                <span class="tag">Updates</span>
-                <span class="tag">Controle</span>
-                <span class="tag">Aanpassingen</span>
-              </div>
-            </article>
-
-            <article class="card service-card hover-lift reveal">
-              <div>
-                <span class="service-number">03</span>
-                <h3>Content</h3>
-                <p>Korte video's, visuals en social media content die je bedrijf herkenbaar maken.</p>
-              </div>
-              <div class="tag-row">
-                <span class="tag">Video</span>
-                <span class="tag">Visuals</span>
-                <span class="tag">Social</span>
-              </div>
-              <ul class="service-points">
-                <li><span>01</span> Korte edits voor socials</li>
-                <li><span>02</span> Visuals in jouw stijl</li>
-              </ul>
-            </article>
+          <div class="flow-grid">
+            <a class="card flow-card hover-lift reveal" href="./pakketten.html">
+              <span class="service-number">01</span>
+              <h3>Pakketten vergelijken</h3>
+              <p>Bekijk snel welke websiteformule past bij je bedrijf, budget en groeifase.</p>
+            </a>
+            <a class="card flow-card hover-lift reveal" href="./diensten.html">
+              <span class="service-number">02</span>
+              <h3>Diensten begrijpen</h3>
+              <p>Lees hoe websites, onderhoud en content samen een sterke online basis vormen.</p>
+            </a>
+            <a class="card flow-card hover-lift reveal" href="./portfolio.html">
+              <span class="service-number">03</span>
+              <h3>Voorbeelden bekijken</h3>
+              <p>Bekijk concrete projecten en voorbeeldsites op de aparte portfoliopagina.</p>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+      <section class="section" aria-labelledby="home-next-title">
         <div class="container">
-          <div class="portfolio-intro reveal">
+          <div class="cta-band reveal">
             <div>
-              <span class="eyebrow">Portfolio</span>
-              <h2 id="portfolio-title">Projecten waar we aan gewerkt hebben.</h2>
+              <span class="eyebrow">Volgende stap</span>
+              <h2 id="home-next-title">Begin bij pakketten, eindig met een gerichte aanvraag.</h2>
               <p>
-                Bekijk hoe we bestaande flows duidelijker, mobieler en gebruiksvriendelijker maken.
+                Vergelijk eerst de formules en stuur daarna gericht door wat je bedrijf nodig heeft.
               </p>
             </div>
-            <button
-              class="primary-button portfolio-toggle"
-              type="button"
-              aria-expanded="true"
-              aria-controls="portfolio-projects"
-              data-portfolio-toggle
-            >
-              Verberg projecten
-            </button>
+            <a class="primary-button" href="./pakketten.html">Naar pakketten</a>
           </div>
-
-          <div class="portfolio-projects" id="portfolio-projects">
-            <article class="card portfolio-card reveal">
-              <div class="portfolio-copy">
-                <span class="service-number">01</span>
-                <h3>Walk Brussels</h3>
-                <p>
-                  Voor Walk Brussels hebben we hun oude Stoep op de Troep-formulier herwerkt naar een mobiele app-flow
-                  in hun bestaande huisstijl. De nieuwe versie werkt met duidelijke stappen, zodat gebruikers sneller
-                  door het rapportageformulier gaan.
-                </p>
-                <div class="portfolio-detail-grid">
-                  <div>
-                    <h4>Vraag</h4>
-                    <p>Het oorspronkelijke formulier was lang, technisch en voelde niet ideaal aan op een smartphone.</p>
-                  </div>
-                  <div>
-                    <h4>Aanpak</h4>
-                    <p>We splitsten het formulier op in logische stappen, hielden de Walk Brussels-kleuren aan en maakten de flow mobieler.</p>
-                  </div>
-                  <div>
-                    <h4>Resultaat</h4>
-                    <p>Een duidelijkere rapportageflow waarbij adres, obstakel, foto en gegevens stap voor stap ingevuld worden.</p>
-                  </div>
-                </div>
-                <div class="tag-row">
-                  <span class="tag">Mobiele app-flow</span>
-                  <span class="tag">Stappenstructuur</span>
-                  <span class="tag">Bestaande huisstijl</span>
-                </div>
-                <a
-                  class="secondary-button portfolio-link"
-                  href="https://ehb-mct.github.io/fullprojects2-walk-walk4/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Bekijk Walk Brussels
-                </a>
-              </div>
-
-              <figure class="portfolio-before">
-                <img
-                  src="./public/portfolio-walk-brussels-result.png"
-                  alt="Mobiele Walk Brussels registratieflow gemaakt door BMA Studio"
-                />
-                <figcaption>Resultaat: mobiele stappenflow in de Walk Brussels-huisstijl.</figcaption>
-              </figure>
-            </article>
-
-            <article class="card portfolio-card reveal">
-              <div class="portfolio-copy">
-                <span class="service-number">02</span>
-                <h3>Nova - voorbeeld Starter Website</h3>
-                <p>
-                  Nova is geen klantcase, maar een duidelijk voorbeeld van hoe ons Starter Website-pakket eruit kan zien:
-                  een compacte website die professioneel aanvoelt, uitlegt wat het bedrijf doet en bezoekers snel naar
-                  de belangrijkste actie stuurt.
-                </p>
-                <div class="portfolio-detail-grid">
-                  <div>
-                    <h4>Vraag</h4>
-                    <p>Een concreet voorbeeld tonen van wat klanten mogen verwachten bij een Starter Website.</p>
-                  </div>
-                  <div>
-                    <h4>Aanpak</h4>
-                    <p>We hielden de structuur kort, maakten de boodschap direct en bouwden de pagina rond een heldere eerste indruk.</p>
-                  </div>
-                  <div>
-                    <h4>Resultaat</h4>
-                    <p>Een overzichtelijke voorbeeldsite met een rustige opbouw, sterke call-to-action en genoeg ruimte voor groei.</p>
-                  </div>
-                </div>
-                <div class="tag-row">
-                  <span class="tag">Starter pakket</span>
-                  <span class="tag">Voorbeeldsite</span>
-                  <span class="tag">Compacte website</span>
-                </div>
-                <a
-                  class="secondary-button portfolio-link"
-                  href="https://liosmeers.github.io/Nova-website/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Bekijk Nova
-                </a>
-              </div>
-
-              <figure class="portfolio-preview portfolio-preview-wide">
-                <img
-                  src="./public/portfolio-nova-result.png"
-                  alt="Hero screenshot van de Nova starter website"
-                />
-                <figcaption>Voorbeeld van ons Starter Website-pakket.</figcaption>
-              </figure>
-            </article>
-
-            <article class="card portfolio-card reveal">
-              <div class="portfolio-copy">
-                <span class="service-number">03</span>
-                <h3>Vergoot - voorbeeld Local Business Website</h3>
-                <p>
-                  Vergoot is een voorbeeld van het Local Business Website-pakket: een duidelijke bedrijfswebsite voor
-                  een lokale zaak die vertrouwen moet uitstralen, diensten helder toont en bezoekers snel naar een
-                  offerte of contactmoment leidt.
-                </p>
-                <div class="portfolio-detail-grid">
-                  <div>
-                    <h4>Vraag</h4>
-                    <p>Een lokale onderneming professioneel online zetten met een stevige eerste indruk en duidelijke focus op aanvragen.</p>
-                  </div>
-                  <div>
-                    <h4>Aanpak</h4>
-                    <p>We bouwden een overzichtelijke website rond diensten, realisaties en contact, met een stijl die past bij dakwerken.</p>
-                  </div>
-                  <div>
-                    <h4>Resultaat</h4>
-                    <p>Een voorbeeldsite voor lokale bedrijven die hun aanbod duidelijk willen tonen en sneller aanvragen willen krijgen.</p>
-                  </div>
-                </div>
-                <div class="tag-row">
-                  <span class="tag">Local Business</span>
-                  <span class="tag">Dienstenwebsite</span>
-                  <span class="tag">Offertegericht</span>
-                  <span class="tag">Lokale zaak</span>
-                </div>
-                <a
-                  class="secondary-button portfolio-link"
-                  href="https://liosmeers.github.io/dakwerken-vergoot/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Bekijk Vergoot
-                </a>
-              </div>
-
-              <figure class="portfolio-preview portfolio-preview-wide">
-                <img
-                  src="./public/portfolio-vergoot-result.png"
-                  alt="Hero screenshot van de Vergoot dakwerken website"
-                />
-                <figcaption>Voorbeeld van ons Local Business Website-pakket.</figcaption>
-              </figure>
-            </article>
-
-            <article class="card portfolio-card reveal">
-              <div class="portfolio-copy">
-                <span class="service-number">04</span>
-                <h3>Fleura - voorbeeld Website + Content</h3>
-                <p>
-                  Fleura is een voorbeeld van de website die je bij het Website + Content-pakket zou kunnen krijgen.
-                  Dit voorbeeld bestaat uit 5 HTML-pagina's; de content die erbij hoort wordt afgestemd op wat de klant
-                  wil uitstralen en nodig heeft.
-                </p>
-                <div class="portfolio-detail-grid">
-                  <div>
-                    <h4>Vraag</h4>
-                    <p>Een uitgebreider voorbeeld tonen voor een beautyzaak die professioneel, warm en betrouwbaar wil overkomen.</p>
-                  </div>
-                  <div>
-                    <h4>Aanpak</h4>
-                    <p>We werkten een volledige website uit met meerdere pagina's, duidelijke navigatie en een sterke visuele stijl.</p>
-                  </div>
-                  <div>
-                    <h4>Resultaat</h4>
-                    <p>Een voorbeeldsite met 5 HTML-pagina's, content op maat volgens de klant en 2 uur onderhoud per maand.</p>
-                  </div>
-                </div>
-                <div class="tag-row">
-                  <span class="tag">Website + Content</span>
-                  <span class="tag">5 HTML-pagina's</span>
-                  <span class="tag">Content op maat</span>
-                  <span class="tag">2 uur onderhoud/mnd</span>
-                </div>
-                <a
-                  class="secondary-button portfolio-link"
-                  href="https://liosmeers.github.io/Beauty-clinic-fleura/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Bekijk Fleura
-                </a>
-              </div>
-
-              <figure class="portfolio-preview portfolio-preview-wide">
-                <img
-                  src="./public/portfolio-fleura-result.png"
-                  alt="Hero screenshot van de Fleura beauty clinic website"
-                />
-                <figcaption>Voorbeeld van de website binnen het Website + Content-pakket.</figcaption>
-              </figure>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="pakketten" aria-labelledby="packages-title">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Pakketten</span>
-            <h2 id="packages-title">Kies een pakket dat past bij je bedrijf.</h2>
-          </div>
-
-          <div class="pricing-grid">
-            <article class="card pricing-card hover-lift reveal" data-package="starter">
-              <div>
-                <h3>Starter Website</h3>
-                <p class="price">Vanaf €350 setup + €49/mnd</p>
-                <p class="pricing-description">Voor kleine zelfstandigen die snel professioneel online willen staan.</p>
-              </div>
-              <ul class="benefit-list" aria-label="Voordelen">
-                <li><span class="checkmark">✓</span><span>1 pagina</span></li>
-                <li><span class="checkmark">✓</span><span>Mobielvriendelijk ontwerp</span></li>
-                <li><span class="checkmark">✓</span><span>30 minuten onderhoud per maand</span></li>
-              </ul>
-              <button class="outline-button package-button" type="button">Vraag Starter aan</button>
-            </article>
-
-            <article class="card pricing-card hover-lift reveal" data-package="local">
-              <div>
-                <div class="pricing-title-row">
-                  <h3>Local Business Website</h3>
-                  <span class="badge">Aanbevolen</span>
-                </div>
-                <p class="price">Vanaf €550 setup + €79/mnd</p>
-                <p class="pricing-description">Voor lokale bedrijven die een duidelijke bedrijfswebsite nodig hebben.</p>
-              </div>
-              <ul class="benefit-list" aria-label="Voordelen">
-                <li><span class="checkmark">✓</span><span>3 tot 4 pagina's</span></li>
-                <li><span class="checkmark">✓</span><span>Contactformulier en Google Maps</span></li>
-                <li><span class="checkmark">✓</span><span>1 uur onderhoud per maand</span></li>
-              </ul>
-              <button class="outline-button package-button" type="button">Vraag Local Business aan</button>
-            </article>
-
-            <article class="card pricing-card hover-lift reveal" data-package="content">
-              <div>
-                <h3>Website + Content</h3>
-                <p class="price">Vanaf €750 setup + €149/mnd</p>
-                <p class="pricing-description">Voor bedrijven die naast een website ook sterker zichtbaar willen zijn op sociale media.</p>
-              </div>
-              <ul class="benefit-list" aria-label="Voordelen">
-                <li><span class="checkmark">✓</span><span>4 tot 5 pagina's</span></li>
-                <li><span class="checkmark">✓</span><span>2 korte social media edits per maand</span></li>
-                <li><span class="checkmark">✓</span><span>2 uur onderhoud per maand</span></li>
-              </ul>
-              <button class="outline-button package-button" type="button">Vraag Content pakket aan</button>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-grid">
-          <article class="contact-info-card reveal">
-            <img
-              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=78"
-              alt="Laptop met websitecode en webproject op een bureau"
-              class="contact-bg"
-            />
-            <div class="contact-overlay"></div>
-            <div class="contact-info-content">
-              <span class="eyebrow dark-eyebrow">Contact</span>
-              <h2 id="contact-title">Klaar voor een sterkere online basis?</h2>
-              <p>Vertel kort wat je bedrijf nodig heeft. We bekijken welk pakket het best past.</p>
-              <ul class="contact-list">
-                <li>Mail: <a href="mailto:info@bmastudio.be">info@bmastudio.be</a></li>
-                <li>Reactietijd: dezelfde dag</li>
-                <li>Voor lokale ondernemers, starters en kleine bedrijven</li>
-              </ul>
-            </div>
-          </article>
-
-          <form
-            class="card contact-form reveal"
-            action="https://formsubmit.co/info@bmastudio.be"
-            data-endpoint="https://formsubmit.co/ajax/info@bmastudio.be"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="_subject" value="Nieuwe aanvraag via bmastudio.be" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
-            <div class="form-row">
-              <label for="name">Naam</label>
-              <input id="name" name="name" type="text" autocomplete="name" required />
-              <p class="field-error" data-error-for="name"></p>
-            </div>
-            <div class="form-row">
-              <label for="company">Bedrijf</label>
-              <input id="company" name="company" type="text" autocomplete="organization" />
-            </div>
-            <div class="form-row">
-              <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-              <p class="field-error" data-error-for="email"></p>
-            </div>
-            <div class="form-row">
-              <label for="message">Bericht</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-              <p class="field-error" data-error-for="message"></p>
-            </div>
-            <button class="primary-button full-width" type="submit">Verstuur aanvraag</button>
-            <p class="success-message" role="status" hidden>
-              Bedankt. Je aanvraag is verzonden.
-            </p>
-          </form>
         </div>
       </section>
 
@@ -703,24 +358,6 @@
       </div>
     </footer>
 
-    <div class="package-spotlight" hidden>
-      <article class="spotlight-card" role="dialog" aria-modal="true" aria-labelledby="spotlight-title">
-        <button class="spotlight-close" type="button" aria-label="Sluit pakket">×</button>
-        <div class="spotlight-header">
-          <span class="eyebrow">Gekozen pakket</span>
-          <span class="badge spotlight-badge" hidden></span>
-        </div>
-        <h2 id="spotlight-title"></h2>
-        <p class="price spotlight-price"></p>
-        <p class="pricing-description spotlight-description"></p>
-        <ul class="benefit-list spotlight-benefits"></ul>
-        <div class="spotlight-actions">
-          <button class="primary-button" type="button" data-target="contact">Vraag dit pakket aan</button>
-          <button class="secondary-button spotlight-back" type="button">Terug naar pakketten</button>
-        </div>
-      </article>
-    </div>
-
-    <script src="./main.js?v=20260618-portfolio-blue"></script>
+    <script src="./main.js?v=20260621-flow"></script>
   </body>
 </html>

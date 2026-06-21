@@ -1,7 +1,7 @@
 const packageDetails = {
 	starter: {
 		title: "Starter Website",
-		price: "Vanaf €300 setup + €19/mnd",
+		price: "Vanaf €350 setup + €49/mnd",
 		description:
 			"Voor kleine zelfstandigen die snel professioneel online willen staan.",
 		benefits: [
@@ -15,7 +15,7 @@ const packageDetails = {
 	local: {
 		title: "Local Business Website",
 		badge: "Aanbevolen",
-		price: "Vanaf €500 setup + €49/mnd",
+		price: "Vanaf €550 setup + €79/mnd",
 		description:
 			"Voor lokale bedrijven die een duidelijke bedrijfswebsite nodig hebben.",
 		benefits: [
@@ -28,7 +28,7 @@ const packageDetails = {
 	},
 	content: {
 		title: "Website + Content",
-		price: "Vanaf €700 setup + €69/mnd",
+		price: "Vanaf €750 setup + €149/mnd",
 		description:
 			"Voor bedrijven die naast een website ook sterker zichtbaar willen zijn op sociale media.",
 		benefits: [
@@ -47,7 +47,7 @@ const heroSection = document.querySelector(".hero-section");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const navButtons = document.querySelectorAll(
-	"header [data-target], .hero-section [data-target]",
+	"header [data-target], .hero-section [data-target], .founder-section [data-target]",
 );
 const packageCards = document.querySelectorAll("[data-package]");
 const spotlight = document.querySelector(".package-spotlight");
@@ -57,13 +57,13 @@ const spotlightBack = document.querySelector(".spotlight-back");
 const portfolioToggle = document.querySelector("[data-portfolio-toggle]");
 const portfolioProjects = document.querySelector("#portfolio-projects");
 const contactForm = document.querySelector(".contact-form");
-const contactSubmit = contactForm.querySelector("[type='submit']");
-const contactStatus = contactForm.querySelector(".success-message");
+const contactSubmit = contactForm?.querySelector("[type='submit']");
+const contactStatus = contactForm?.querySelector(".success-message");
 const year = document.querySelector("#year");
 let activePackageKey = "";
 let scrollUpdateQueued = false;
 
-year.textContent = new Date().getFullYear();
+if (year) year.textContent = new Date().getFullYear();
 
 function clampNumber(value, min, max) {
 	return Math.min(max, Math.max(min, value));
@@ -76,7 +76,7 @@ function scrollToSection(id) {
 	const runScroll = () =>
 		section.scrollIntoView({ behavior: "smooth", block: "start" });
 
-	if (mobileMenu.classList.contains("is-open")) {
+	if (mobileMenu?.classList.contains("is-open")) {
 		closeMenu();
 		window.setTimeout(runScroll, 230);
 		return;
@@ -90,14 +90,14 @@ function updateScrollState() {
 		document.documentElement.scrollHeight - document.documentElement.clientHeight;
 	const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
 
-	header.classList.toggle("is-scrolled", window.scrollY > 14);
+	header?.classList.toggle("is-scrolled", window.scrollY > 14);
 	document.documentElement.style.setProperty(
 		"--scroll-progress",
 		String(clampNumber(progress, 0, 1)),
 	);
 	updateHeroTransition();
 
-	const activeId = ["diensten", "portfolio", "pakketten", "contact", "reviews"].reduce(
+	const activeId = ["diensten", "over-ons", "portfolio", "pakketten", "contact", "reviews"].reduce(
 		(current, id) => {
 			const section = document.getElementById(id);
 			return section && section.getBoundingClientRect().top <= 180
@@ -107,7 +107,7 @@ function updateScrollState() {
 		"",
 	);
 
-	document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((link) => {
+	document.querySelectorAll(".nav-link[data-target], .mobile-nav-link[data-target]").forEach((link) => {
 		link.classList.toggle("is-active", link.dataset.target === activeId);
 	});
 }
@@ -141,6 +141,8 @@ function updateHeroTransition() {
 }
 
 function closeMenu() {
+	if (!menuToggle || !mobileMenu) return;
+
 	menuToggle.classList.remove("is-open");
 	menuToggle.setAttribute("aria-expanded", "false");
 	mobileMenu.classList.remove("is-open");
@@ -148,7 +150,7 @@ function closeMenu() {
 
 function openSpotlight(packageKey) {
 	const item = packageDetails[packageKey];
-	if (!item) return;
+	if (!item || !spotlight) return;
 
 	activePackageKey = packageKey;
 	spotlight.querySelector("#spotlight-title").textContent = item.title;
@@ -173,13 +175,15 @@ function openSpotlight(packageKey) {
 }
 
 function closeSpotlight() {
+	if (!spotlight) return;
+
 	spotlight.hidden = true;
 	document.body.style.overflow = "";
 }
 
 function fillPackageMessage(packageKey) {
 	const item = packageDetails[packageKey];
-	const messageField = contactForm.elements.message;
+	const messageField = contactForm?.elements.message;
 	if (!item || !messageField) return;
 
 	messageField.value = item.inquiryMessage;
@@ -192,6 +196,8 @@ function fillPackageMessage(packageKey) {
 }
 
 function setError(field, message) {
+	if (!contactForm) return;
+
 	const input = contactForm.elements[field];
 	const error = contactForm.querySelector(`[data-error-for="${field}"]`);
 
@@ -202,17 +208,23 @@ function setError(field, message) {
 }
 
 function hideContactStatus() {
+	if (!contactStatus) return;
+
 	contactStatus.hidden = true;
 	contactStatus.classList.remove("is-error");
 }
 
 function showContactStatus(message, type = "success") {
+	if (!contactStatus) return;
+
 	contactStatus.textContent = message;
 	contactStatus.classList.toggle("is-error", type === "error");
 	contactStatus.hidden = false;
 }
 
 function validateForm() {
+	if (!contactForm) return false;
+
 	const name = contactForm.elements.name.value.trim();
 	const email = contactForm.elements.email.value.trim();
 	const message = contactForm.elements.message.value.trim();
@@ -456,11 +468,20 @@ function setupPortfolioToggle() {
 	});
 }
 
-document.querySelector("[data-scroll-top]").addEventListener("click", () => {
+function setupPackageQueryPrefill() {
+	if (!contactForm) return;
+
+	const packageKey = new URLSearchParams(window.location.search).get("pakket");
+	if (!packageKey || !packageDetails[packageKey]) return;
+
+	fillPackageMessage(packageKey);
+}
+
+document.querySelector("[data-scroll-top]")?.addEventListener("click", () => {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-menuToggle.addEventListener("click", () => {
+menuToggle?.addEventListener("click", () => {
 	const isOpen = !mobileMenu.classList.contains("is-open");
 	menuToggle.classList.toggle("is-open", isOpen);
 	menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -473,23 +494,25 @@ navButtons.forEach((button) => {
 	);
 });
 
-packageCards.forEach((card) => {
-	card.addEventListener("click", () => openSpotlight(card.dataset.package));
-});
-
-spotlight.addEventListener("click", closeSpotlight);
-spotlightCard.addEventListener("click", (event) => event.stopPropagation());
-spotlightClose.addEventListener("click", closeSpotlight);
-spotlightBack.addEventListener("click", closeSpotlight);
-
-spotlight
-	.querySelector("[data-target='contact']")
-	.addEventListener("click", () => {
-		const selectedPackageKey = activePackageKey;
-		closeSpotlight();
-		fillPackageMessage(selectedPackageKey);
-		window.setTimeout(() => scrollToSection("contact"), 120);
+if (spotlight) {
+	packageCards.forEach((card) => {
+		card.addEventListener("click", () => openSpotlight(card.dataset.package));
 	});
+
+	spotlight.addEventListener("click", closeSpotlight);
+	spotlightCard?.addEventListener("click", (event) => event.stopPropagation());
+	spotlightClose?.addEventListener("click", closeSpotlight);
+	spotlightBack?.addEventListener("click", closeSpotlight);
+
+	spotlight
+		.querySelector("[data-target='contact']")
+		?.addEventListener("click", () => {
+			const selectedPackageKey = activePackageKey;
+			closeSpotlight();
+			fillPackageMessage(selectedPackageKey);
+			window.setTimeout(() => scrollToSection("contact"), 120);
+		});
+}
 
 window.addEventListener("keydown", (event) => {
 	if (event.key === "Escape" && !spotlight.hidden) closeSpotlight();
@@ -498,12 +521,12 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("scroll", scheduleScrollStateUpdate, { passive: true });
 window.addEventListener("resize", updateScrollState);
 
-contactForm.addEventListener("input", (event) => {
+contactForm?.addEventListener("input", (event) => {
 	if (event.target.name) setError(event.target.name, "");
 	hideContactStatus();
 });
 
-contactForm.addEventListener("submit", async (event) => {
+contactForm?.addEventListener("submit", async (event) => {
 	event.preventDefault();
 
 	if (!validateForm()) return;
@@ -543,4 +566,5 @@ setupPhonePointerEffect();
 setupPagePressure();
 setupCursorGlow();
 setupPortfolioToggle();
+setupPackageQueryPrefill();
 updateScrollState();
