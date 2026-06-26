@@ -1768,6 +1768,20 @@ p {
   margin-top: 0.8rem;
 }
 
+.portfolio-context-label {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  border: 1px solid rgba(49, 95, 154, 0.16);
+  border-radius: var(--radius-pill);
+  background: rgba(234, 241, 249, 0.72);
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 950;
+  line-height: 1;
+  padding: 0.42rem 0.56rem;
+}
+
 .portfolio-detail-grid {
   display: grid;
   gap: 0.75rem;
