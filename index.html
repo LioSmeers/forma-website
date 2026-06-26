@@ -44,7 +44,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=20260621-menu" />
+    <link rel="stylesheet" href="./style.css?v=20260626-home" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -153,117 +153,180 @@
         <div class="container hero-grid">
           <div class="hero-ticker" aria-label="Snelle zekerheden">
             <div class="hero-ticker-track">
-              <span>4 sterren op Trustpilot</span>
-              <span>Antwoord binnen dezelfde dag</span>
-              <span>Websites voor lokale ondernemers</span>
-              <span>4 sterren op Trustpilot</span>
-              <span>Antwoord binnen dezelfde dag</span>
-              <span>Websites voor lokale ondernemers</span>
+              <span>Build</span>
+              <span>Maintain</span>
+              <span>Attract</span>
+              <span>Digitale studio voor lokale ondernemingen</span>
+              <span>Build</span>
+              <span>Maintain</span>
+              <span>Attract</span>
+              <span>Digitale studio voor lokale ondernemingen</span>
             </div>
           </div>
 
-          <article class="card hero-card reveal">
+          <article class="hero-card reveal">
             <div class="hero-copy">
-              <p class="eyebrow">Websites · Onderhoud · Content</p>
-              <h1 id="hero-title">De online basis voor lokale bedrijven.</h1>
+              <p class="eyebrow">Build · Maintain · Attract</p>
+              <h1 id="hero-title">Digitaal werk dat lokale merken sterker laat binnenkomen.</h1>
               <p class="hero-text">
-                BMA Studio helpt lokale ondernemingen met duidelijke websites, maandelijks onderhoud
-                en social media content die vertrouwen opbouwen en klanten sneller laten contact opnemen.
+                BMA Studio ontwerpt en bouwt websites, houdt ze scherp na livegang en maakt content
+                die je lokale onderneming zichtbaar en herkenbaar maakt.
               </p>
 
               <div class="button-row">
-                <a class="primary-button" href="./pakketten.html">Bekijk pakketten</a>
-                <a class="secondary-button" href="./contact.html">Vraag info aan</a>
+                <a class="primary-button" href="./portfolio.html">Bekijk ons werk</a>
+                <a class="secondary-button" href="./contact.html">Start je project</a>
               </div>
             </div>
 
+            <div class="hero-visual" aria-label="Visuele preview van BMA Studio">
+              <div class="hero-3d-reserve" data-parallax data-speed="-0.08" aria-hidden="true">
+                <div class="hero-ambient hero-ambient-one"></div>
+                <div class="hero-ambient hero-ambient-two"></div>
+                <div class="hero-browser-stack">
+                  <div class="browser-mockup hero-browser hero-browser-front">
+                    <div class="browser-topbar">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <img src="./public/portfolio-fleura-result.png" alt="" loading="eager" />
+                  </div>
+                  <div class="browser-mockup hero-browser hero-browser-back" data-parallax data-speed="0.12">
+                    <div class="browser-topbar">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <img src="./public/portfolio-vergoot-result.png" alt="" loading="eager" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </article>
 
         </div>
       </section>
 
-      <section class="phone-section" aria-label="Belangrijkste voordelen">
+      <section class="project-preview-section" aria-labelledby="project-preview-title">
         <div class="container">
-          <div class="phone-stage">
-            <div class="phone-info phone-info-left reveal">
-              <span class="eyebrow">Basis</span>
-              <h2>Gebouwd voor ondernemers die vooruit willen.</h2>
+          <div class="section-heading reveal">
+            <span class="eyebrow">Build · Maintain · Attract</span>
+            <h2 id="project-preview-title">Projecten als eerste bewijs, niet als voetnoot.</h2>
+            <p>
+              Een snelle blik op stijlen en flows die passen bij lokale zaken: compact,
+              helder en visueel genoeg om meteen vertrouwen te geven.
+            </p>
+          </div>
+
+          <div class="project-preview-grid">
+            <a class="project-preview-card reveal hover-lift" href="./portfolio.html">
+              <div class="browser-mockup preview-browser" data-parallax data-speed="0.08">
+                <div class="browser-topbar">
+                  <span></span><span></span><span></span>
+                </div>
+                <img src="./public/portfolio-nova-result.png" alt="Preview van Nova starter website" loading="lazy" />
+              </div>
+              <div class="project-preview-copy">
+                <span class="service-number">Build</span>
+                <h3>Nova - Starter Website</h3>
+                <p>Een compacte website met een duidelijke eerste indruk en snelle route naar contact.</p>
+              </div>
+            </a>
+
+            <a class="project-preview-card project-preview-card-featured reveal hover-lift" href="./portfolio.html">
+              <div class="browser-mockup preview-browser" data-parallax data-speed="-0.1">
+                <div class="browser-topbar">
+                  <span></span><span></span><span></span>
+                </div>
+                <img src="./public/portfolio-vergoot-result.png" alt="Preview van Vergoot local business website" loading="lazy" />
+              </div>
+              <div class="project-preview-copy">
+                <span class="service-number">Maintain</span>
+                <h3>Vergoot - Local Business</h3>
+                <p>Een offertegerichte structuur voor een lokale onderneming die vertrouwen wil uitstralen.</p>
+              </div>
+            </a>
+
+            <a class="project-preview-card reveal hover-lift" href="./portfolio.html">
+              <div class="browser-mockup preview-browser" data-parallax data-speed="0.12">
+                <div class="browser-topbar">
+                  <span></span><span></span><span></span>
+                </div>
+                <img src="./public/portfolio-fleura-result.png" alt="Preview van Fleura website en content voorbeeld" loading="lazy" />
+              </div>
+              <div class="project-preview-copy">
+                <span class="service-number">Attract</span>
+                <h3>Fleura - Website + Content</h3>
+                <p>Een warmere visuele richting voor een zaak die herkenbaar wil blijven in website en content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="principle-section" aria-labelledby="principle-title">
+        <div class="principle-pin">
+          <div class="container principle-grid">
+            <div class="principle-copy reveal">
+              <span class="eyebrow dark-eyebrow">Build · Maintain · Attract</span>
+              <h2 id="principle-title">Eerst bouwen. Dan onderhouden. Daarna aantrekken.</h2>
               <p>
-                We maken websites die duidelijk zijn, snel laden en meteen tonen waarom klanten voor jou moeten kiezen.
+                De homepage volgt hetzelfde principe als de samenwerking: een sterke digitale basis,
+                consequente opvolging en zichtbaarheid die past bij je lokale publiek.
               </p>
             </div>
 
-            <aside class="hero-phone-wrap reveal phone-reveal">
-              <div class="iphone-shell">
-                <div class="iphone-side-button iphone-side-button-top" aria-hidden="true"></div>
-                <div class="iphone-side-button iphone-side-button-bottom" aria-hidden="true"></div>
-                <div class="iphone-screen">
-                  <div class="iphone-notch" aria-hidden="true"></div>
-                  <div class="iphone-status">
-                    <span>BMA Studio</span>
-                    <span>Online</span>
+            <div class="principle-stage" aria-live="polite">
+              <article class="principle-panel is-active" data-principle-panel>
+                <span>01</span>
+                <h3>Build</h3>
+                <p>We ontwerpen en bouwen een website die snel laadt, duidelijk navigeert en je aanbod meteen leesbaar maakt.</p>
+              </article>
+              <article class="principle-panel" data-principle-panel>
+                <span>02</span>
+                <h3>Maintain</h3>
+                <p>Na livegang blijft de basis bruikbaar: updates, kleine aanpassingen en technische netheid blijven opgevolgd.</p>
+              </article>
+              <article class="principle-panel" data-principle-panel>
+                <span>03</span>
+                <h3>Attract</h3>
+                <p>Met content en visuele consistentie wordt je bedrijf herkenbaarder voor mensen in je buurt.</p>
+              </article>
+
+              <div class="principle-device" data-parallax data-speed="0.1" aria-hidden="true">
+                <div class="browser-mockup principle-browser">
+                  <div class="browser-topbar">
+                    <span></span><span></span><span></span>
                   </div>
-                  <div class="iphone-points">
-                    <article class="iphone-point">
-                      <span class="iphone-point-number">01</span>
-                      <div>
-                        <h3>100% mobile-first</h3>
-                        <p>Voor klanten die zoeken, vergelijken en boeken via hun smartphone.</p>
-                      </div>
-                    </article>
-                    <article class="iphone-point">
-                      <span class="iphone-point-number">02</span>
-                      <div>
-                        <h3>Vanaf €49/mnd</h3>
-                        <p>Alleen voor onderhoud: vaste pakketten zodat je website actueel blijft.</p>
-                      </div>
-                    </article>
-                    <article class="iphone-point">
-                      <span class="iphone-point-number">03</span>
-                      <div>
-                        <h3>Voor lokale zaken</h3>
-                        <p>Kappers, horeca, salons, shops, trainers en creatieve ondernemers.</p>
-                      </div>
-                    </article>
+                  <div class="principle-browser-body">
+                    <div class="principle-line principle-line-wide"></div>
+                    <div class="principle-line"></div>
+                    <div class="principle-tile-grid">
+                      <span></span><span></span><span></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </aside>
-
-            <div class="phone-info phone-info-right reveal">
-              <span class="eyebrow">Werkwijze</span>
-              <h2>Strak, persoonlijk en zonder gedoe.</h2>
-              <p>
-                We denken mee over je aanbod, houden je website netjes bij en reageren dezelfde dag op je aanvraag.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" aria-labelledby="quick-routes-title">
+      <section class="section portfolio-section home-portfolio-section" aria-labelledby="home-portfolio-title">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Kies je route</span>
-            <h2 id="quick-routes-title">Ga meteen naar wat je zoekt.</h2>
+          <div class="portfolio-intro reveal">
+            <div>
+              <span class="eyebrow">Portfolio</span>
+              <h2 id="home-portfolio-title">Bekijk hoe Build · Maintain · Attract eruit kan zien.</h2>
+              <p>
+                De volledige portfoliopagina bundelt de bestaande voorbeelden met links naar de live projecten.
+              </p>
+            </div>
+            <a class="primary-button" href="./portfolio.html">Bekijk ons werk</a>
           </div>
 
-          <div class="flow-grid">
-            <a class="card flow-card hover-lift reveal" href="./pakketten.html">
-              <span class="service-number">01</span>
-              <h3>Pakketten vergelijken</h3>
-              <p>Bekijk snel welke websiteformule past bij je bedrijf, budget en groeifase.</p>
-            </a>
-            <a class="card flow-card hover-lift reveal" href="./diensten.html">
-              <span class="service-number">02</span>
-              <h3>Diensten begrijpen</h3>
-              <p>Lees hoe websites, onderhoud en content samen een sterke online basis vormen.</p>
-            </a>
-            <a class="card flow-card hover-lift reveal" href="./portfolio.html">
-              <span class="service-number">03</span>
-              <h3>Voorbeelden bekijken</h3>
-              <p>Bekijk concrete projecten en voorbeeldsites op de aparte portfoliopagina.</p>
-            </a>
+          <div class="portfolio-strip reveal" data-parallax data-speed="-0.06">
+            <img src="./public/portfolio-walk-brussels-result.png" alt="Walk Brussels registratieflow" loading="lazy" />
+            <img src="./public/portfolio-nova-result.png" alt="Nova starter website" loading="lazy" />
+            <img src="./public/portfolio-vergoot-result.png" alt="Vergoot local business website" loading="lazy" />
+            <img src="./public/portfolio-fleura-result.png" alt="Fleura website en content voorbeeld" loading="lazy" />
           </div>
         </div>
       </section>
@@ -272,13 +335,13 @@
         <div class="container">
           <div class="cta-band reveal">
             <div>
-              <span class="eyebrow">Volgende stap</span>
-              <h2 id="home-next-title">Begin bij pakketten, eindig met een gerichte aanvraag.</h2>
+              <span class="eyebrow">Start je project</span>
+              <h2 id="home-next-title">Klaar om je eigen Build · Maintain · Attract-flow te starten?</h2>
               <p>
-                Vergelijk eerst de formules en stuur daarna gericht door wat je bedrijf nodig heeft.
+                Stuur kort door waar je onderneming staat. Dan bekijken we welke website, opvolging en content logisch zijn.
               </p>
             </div>
-            <a class="primary-button" href="./pakketten.html">Naar pakketten</a>
+            <a class="primary-button" href="./contact.html">Start je project</a>
           </div>
         </div>
       </section>
@@ -353,13 +416,15 @@
         <div class="brand-lockup">
           <img src="./public/logo-bma.svg" alt="BMA Studio" class="brand-logo brand-logo-footer" />
         </div>
-        <p>Websites · Onderhoud · Content</p>
+        <p>Build · Maintain · Attract</p>
         <a class="footer-text-link" href="./privacy.html">Privacy</a>
         <a class="footer-social-link" href="https://www.linkedin.com/company/bmastudio-be/" target="_blank" rel="noopener">LinkedIn</a>
         <p>© <span id="year"></span> BMA Studio · Lio Smeers. Alle rechten voorbehouden.</p>
       </div>
     </footer>
 
-    <script src="./main.js?v=20260621-menu"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script type="module" src="./main.js?v=20260626-home"></script>
   </body>
 </html>

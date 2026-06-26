@@ -469,6 +469,94 @@ function setupPortfolioToggle() {
 	});
 }
 
+function setupHomeMotion() {
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+	const parallaxItems = document.querySelectorAll("[data-parallax]");
+	const principleSection = document.querySelector(".principle-section");
+	const principlePin = document.querySelector(".principle-pin");
+	const principlePanels = document.querySelectorAll("[data-principle-panel]");
+
+	if (prefersReducedMotion) {
+		principlePanels[0]?.classList.add("is-active");
+		return;
+	}
+
+	const setActivePrinciple = (activeIndex) => {
+		principlePanels.forEach((panel, index) => {
+			panel.classList.toggle("is-active", index === activeIndex);
+		});
+	};
+
+	const hasGsap =
+		window.gsap && window.ScrollTrigger && principleSection && principlePin;
+
+	if (hasGsap) {
+		window.gsap.registerPlugin(window.ScrollTrigger);
+
+		if (principlePanels.length) {
+			window.ScrollTrigger.create({
+				trigger: principleSection,
+				start: "top top",
+				end: "+=220%",
+				pin: principlePin,
+				scrub: true,
+				onUpdate: (self) => {
+					const index = clampNumber(
+						Math.floor(self.progress * principlePanels.length),
+						0,
+						principlePanels.length - 1,
+					);
+					setActivePrinciple(index);
+				},
+			});
+		}
+
+		parallaxItems.forEach((item) => {
+			const speed = Number(item.dataset.speed || 0.08);
+			window.gsap.to(item, {
+				y: () => Math.round(speed * 220),
+				ease: "none",
+				scrollTrigger: {
+					trigger: item,
+					start: "top bottom",
+					end: "bottom top",
+					scrub: true,
+				},
+			});
+		});
+
+		return;
+	}
+
+	let parallaxQueued = false;
+	const updateParallax = () => {
+		parallaxQueued = false;
+		const viewportCenter = window.innerHeight / 2;
+
+		parallaxItems.forEach((item) => {
+			const speed = Number(item.dataset.speed || 0.08);
+			const rect = item.getBoundingClientRect();
+			const distance = rect.top + rect.height / 2 - viewportCenter;
+			item.style.setProperty(
+				"--parallax-y",
+				`${Math.round(distance * speed * -0.18)}px`,
+			);
+		});
+	};
+
+	const scheduleParallax = () => {
+		if (parallaxQueued) return;
+		parallaxQueued = true;
+		window.requestAnimationFrame(updateParallax);
+	};
+
+	window.addEventListener("scroll", scheduleParallax, { passive: true });
+	window.addEventListener("resize", scheduleParallax);
+	updateParallax();
+}
+
 function setupPackageQueryPrefill() {
 	if (!contactForm) return;
 
@@ -517,7 +605,7 @@ if (spotlight) {
 }
 
 window.addEventListener("keydown", (event) => {
-	if (event.key === "Escape" && !spotlight.hidden) closeSpotlight();
+	if (event.key === "Escape" && spotlight && !spotlight.hidden) closeSpotlight();
 });
 
 window.addEventListener("scroll", scheduleScrollStateUpdate, { passive: true });
@@ -568,5 +656,6 @@ setupPhonePointerEffect();
 setupPagePressure();
 setupCursorGlow();
 setupPortfolioToggle();
+setupHomeMotion();
 setupPackageQueryPrefill();
 updateScrollState();
