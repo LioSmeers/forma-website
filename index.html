@@ -107,8 +107,15 @@
     </script>
   </head>
   <body>
-    <div class="cursor-glow" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="site-depth-background" data-depth-scene aria-hidden="true">
+      <div class="depth-grid depth-grid-back"></div>
+      <div class="depth-frame depth-frame-one"></div>
+      <div class="depth-frame depth-frame-two"></div>
+      <span class="depth-word depth-word-build">BUILD</span>
+      <span class="depth-word depth-word-maintain">MAINTAIN</span>
+      <span class="depth-word depth-word-attract">ATTRACT</span>
+    </div>
 
     <header class="site-header">
       <div class="container header-inner">
@@ -151,19 +158,6 @@
     <main>
       <section class="hero-section" aria-labelledby="hero-title">
         <div class="container hero-grid">
-          <div class="hero-ticker" aria-label="Snelle zekerheden">
-            <div class="hero-ticker-track">
-              <span>Build</span>
-              <span>Maintain</span>
-              <span>Attract</span>
-              <span>Digitale studio voor lokale ondernemingen</span>
-              <span>Build</span>
-              <span>Maintain</span>
-              <span>Attract</span>
-              <span>Digitale studio voor lokale ondernemingen</span>
-            </div>
-          </div>
-
           <article class="hero-card reveal">
             <div class="hero-copy">
               <p class="eyebrow">Build · Maintain · Attract</p>
@@ -179,9 +173,7 @@
             </div>
 
             <div class="hero-visual" aria-label="Visuele preview van BMA Studio">
-              <div class="hero-3d-reserve" data-parallax data-speed="-0.08" aria-hidden="true">
-                <div class="hero-ambient hero-ambient-one"></div>
-                <div class="hero-ambient hero-ambient-two"></div>
+              <div class="hero-mockup-panel" data-hero-parallax aria-hidden="true">
                 <div class="hero-browser-stack">
                   <div class="browser-mockup hero-browser hero-browser-front">
                     <div class="browser-topbar">
@@ -189,7 +181,7 @@
                     </div>
                     <img src="./public/portfolio-fleura-result.png" alt="" loading="eager" />
                   </div>
-                  <div class="browser-mockup hero-browser hero-browser-back" data-parallax data-speed="0.12">
+                  <div class="browser-mockup hero-browser hero-browser-back">
                     <div class="browser-topbar">
                       <span></span><span></span><span></span>
                     </div>
@@ -206,7 +198,7 @@
       <section class="project-preview-section" aria-labelledby="project-preview-title">
         <div class="container">
           <div class="section-heading reveal">
-            <span class="eyebrow">Build · Maintain · Attract</span>
+            <span class="eyebrow">Portfolio</span>
             <h2 id="project-preview-title">Voorbeelden die tonen wat mogelijk is.</h2>
             <p>
               Een snelle blik op stijlen en flows die passen bij lokale zaken: compact,
@@ -217,7 +209,7 @@
           <div class="project-preview-grid">
             <a class="project-preview-card reveal hover-lift" href="./portfolio.html#nova">
               <span class="concept-badge">CONCEPTSITE</span>
-              <div class="browser-mockup preview-browser" data-parallax data-speed="0.08">
+              <div class="browser-mockup preview-browser">
                 <div class="browser-topbar">
                   <span></span><span></span><span></span>
                 </div>
@@ -232,7 +224,7 @@
 
             <a class="project-preview-card project-preview-card-featured reveal hover-lift" href="./portfolio.html#vergoot">
               <span class="concept-badge">CONCEPTSITE</span>
-              <div class="browser-mockup preview-browser" data-parallax data-speed="-0.1">
+              <div class="browser-mockup preview-browser">
                 <div class="browser-topbar">
                   <span></span><span></span><span></span>
                 </div>
@@ -247,7 +239,7 @@
 
             <a class="project-preview-card reveal hover-lift" href="./portfolio.html#fleura">
               <span class="concept-badge">CONCEPTSITE</span>
-              <div class="browser-mockup preview-browser" data-parallax data-speed="0.12">
+              <div class="browser-mockup preview-browser">
                 <div class="browser-topbar">
                   <span></span><span></span><span></span>
                 </div>
@@ -263,50 +255,29 @@
         </div>
       </section>
 
-      <section class="principle-section" aria-labelledby="principle-title">
-        <div class="principle-pin">
-          <div class="container principle-grid">
-            <div class="principle-copy reveal">
-              <span class="eyebrow dark-eyebrow">Build · Maintain · Attract</span>
-              <h2 id="principle-title">Eerst bouwen. Dan onderhouden. Daarna aantrekken.</h2>
-              <p>
-                De homepage volgt hetzelfde principe als de samenwerking: een sterke digitale basis,
-                consequente opvolging en zichtbaarheid die past bij je lokale publiek.
-              </p>
-            </div>
+      <section class="section service-overview-section" aria-labelledby="service-overview-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Diensten</span>
+            <h2 id="service-overview-title">Wat we voor lokale zaken regelen.</h2>
+          </div>
 
-            <div class="principle-stage">
-              <article class="principle-panel is-active" data-principle-panel>
-                <span>01</span>
-                <h3>Build</h3>
-                <p>We ontwerpen en bouwen een website die snel laadt, duidelijk navigeert en je aanbod meteen leesbaar maakt.</p>
-              </article>
-              <article class="principle-panel" data-principle-panel>
-                <span>02</span>
-                <h3>Maintain</h3>
-                <p>Na livegang blijft de basis bruikbaar: updates, kleine aanpassingen en technische netheid blijven opgevolgd.</p>
-              </article>
-              <article class="principle-panel" data-principle-panel>
-                <span>03</span>
-                <h3>Attract</h3>
-                <p>Met content en visuele consistentie wordt je bedrijf herkenbaarder voor mensen in je buurt.</p>
-              </article>
-
-              <div class="principle-device" data-parallax data-speed="0.1" aria-hidden="true">
-                <div class="browser-mockup principle-browser">
-                  <div class="browser-topbar">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="principle-browser-body">
-                    <div class="principle-line principle-line-wide"></div>
-                    <div class="principle-line"></div>
-                    <div class="principle-tile-grid">
-                      <span></span><span></span><span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="service-overview-grid">
+            <article class="service-overview-card reveal">
+              <span class="service-number">01</span>
+              <h3>Websites</h3>
+              <p>Duidelijke, snelle websites die vertrouwen geven en bezoekers naar contact leiden.</p>
+            </article>
+            <article class="service-overview-card reveal">
+              <span class="service-number">02</span>
+              <h3>Onderhoud</h3>
+              <p>Updates, aanpassingen en technische opvolging zodat je site niet veroudert.</p>
+            </article>
+            <article class="service-overview-card reveal">
+              <span class="service-number">03</span>
+              <h3>Zichtbaarheid</h3>
+              <p>Content en lokale online aanwezigheid zodat klanten je sneller herkennen en vinden.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -316,7 +287,7 @@
           <div class="portfolio-intro reveal">
             <div>
               <span class="eyebrow">Portfolio</span>
-              <h2 id="home-portfolio-title">Bekijk hoe Build · Maintain · Attract eruit kan zien.</h2>
+              <h2 id="home-portfolio-title">Meer voorbeelden van digitaal werk.</h2>
               <p>
                 De volledige portfoliopagina bundelt de bestaande voorbeelden met links naar de live projecten.
               </p>
@@ -324,7 +295,7 @@
             <a class="primary-button" href="./portfolio.html">Bekijk ons werk</a>
           </div>
 
-          <div class="portfolio-strip reveal" data-parallax data-speed="-0.06">
+          <div class="portfolio-strip reveal">
             <img src="./public/portfolio-walk-brussels-result.png" alt="Walk Brussels registratieflow" loading="lazy" />
             <img src="./public/portfolio-nova-result.png" alt="Nova starter website" loading="lazy" />
             <img src="./public/portfolio-vergoot-result.png" alt="Vergoot local business website" loading="lazy" />
@@ -338,7 +309,7 @@
           <div class="cta-band reveal">
             <div>
               <span class="eyebrow">Start je project</span>
-              <h2 id="home-next-title">Klaar om je eigen Build · Maintain · Attract-flow te starten?</h2>
+              <h2 id="home-next-title">Klaar om je project rustig en duidelijk op te starten?</h2>
               <p>
                 Stuur kort door waar je onderneming staat. Dan bekijken we welke website, opvolging en content logisch zijn.
               </p>
@@ -425,8 +396,6 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     <script type="module" src="./main.js?v=20260626-home"></script>
   </body>
 </html>

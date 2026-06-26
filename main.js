@@ -43,7 +43,6 @@ const packageDetails = {
 
 const header = document.querySelector(".site-header");
 const progressBar = document.querySelector(".scroll-progress");
-const heroSection = document.querySelector(".hero-section");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const navButtons = document.querySelectorAll(
@@ -95,7 +94,6 @@ function updateScrollState() {
 		"--scroll-progress",
 		String(clampNumber(progress, 0, 1)),
 	);
-	updateHeroTransition();
 
 	const activeId = ["diensten", "over-ons", "portfolio", "pakketten", "contact", "reviews"].reduce(
 		(current, id) => {
@@ -120,24 +118,6 @@ function scheduleScrollStateUpdate() {
 		scrollUpdateQueued = false;
 		updateScrollState();
 	});
-}
-
-function updateHeroTransition() {
-	if (!heroSection) return;
-
-	const fadeDistance = clampNumber(heroSection.offsetHeight * 0.82, 360, 680);
-	const fadeProgress = clampNumber((window.scrollY - 45) / fadeDistance, 0, 1);
-	const opacity = 1 - fadeProgress;
-
-	heroSection.style.setProperty("--hero-fade-opacity", opacity.toFixed(3));
-	heroSection.style.setProperty(
-		"--hero-fade-blur",
-		`${(fadeProgress * 10).toFixed(2)}px`,
-	);
-	heroSection.style.setProperty(
-		"--hero-fade-y",
-		`${(-fadeProgress * 1.4).toFixed(2)}rem`,
-	);
 }
 
 function closeMenu() {
@@ -282,175 +262,6 @@ function setupReveal() {
 	revealItems.forEach((item) => observer.observe(item));
 }
 
-function setupPhonePointerEffect() {
-	const phone = document.querySelector(".iphone-shell");
-	const phoneSection = document.querySelector(".phone-section");
-	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-	const prefersReducedMotion = window.matchMedia(
-		"(prefers-reduced-motion: reduce)",
-	).matches;
-
-	if (!phone || !phoneSection || !canHover || prefersReducedMotion) return;
-
-	const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-	const resetPhone = () => {
-		phone.classList.remove("is-pointer-active");
-		phone.style.setProperty("--phone-press", "0px");
-		phone.style.setProperty("--phone-tilt-x", "0deg");
-		phone.style.setProperty("--phone-tilt-y", "0deg");
-		phone.style.setProperty("--phone-glow", "0");
-	};
-
-	const movePhone = (event) => {
-		const sectionRect = phoneSection.getBoundingClientRect();
-		const isSectionVisible =
-			sectionRect.top < window.innerHeight && sectionRect.bottom > 0;
-
-		if (!isSectionVisible) {
-			resetPhone();
-			return;
-		}
-
-		const rect = phone.getBoundingClientRect();
-		const x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
-		const y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
-		const tiltY = (x - 0.5) * 9;
-		const tiltX = (0.5 - y) * 7;
-
-		phone.classList.add("is-pointer-active");
-		phone.style.setProperty("--phone-press", "4px");
-		phone.style.setProperty("--phone-tilt-x", `${tiltX.toFixed(2)}deg`);
-		phone.style.setProperty("--phone-tilt-y", `${tiltY.toFixed(2)}deg`);
-		phone.style.setProperty("--phone-light-x", `${Math.round(x * 100)}%`);
-		phone.style.setProperty("--phone-light-y", `${Math.round(y * 100)}%`);
-		phone.style.setProperty("--phone-glow", "1");
-	};
-
-	window.addEventListener("pointermove", movePhone, { passive: true });
-	window.addEventListener("mousemove", movePhone, { passive: true });
-	window.addEventListener("pointerleave", resetPhone);
-	window.addEventListener("blur", resetPhone);
-}
-
-function setupPagePressure() {
-	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-	const prefersReducedMotion = window.matchMedia(
-		"(prefers-reduced-motion: reduce)",
-	).matches;
-
-	if (!canHover || prefersReducedMotion) return;
-
-	let activeTarget = null;
-	const pressureSelector = [
-		".card",
-		".contact-info-card",
-		".trustpilot-strip",
-		".phone-info",
-		"button",
-		"a",
-	].join(", ");
-
-	const resetTarget = () => {
-		if (!activeTarget) return;
-
-		activeTarget.classList.remove("is-pressure-active");
-		activeTarget.style.removeProperty("--surface-press");
-		activeTarget.style.removeProperty("--surface-tilt-x");
-		activeTarget.style.removeProperty("--surface-tilt-y");
-		activeTarget = null;
-	};
-
-	window.addEventListener(
-		"pointermove",
-		(event) => {
-			const targetElement =
-				event.target instanceof Element ? event.target : null;
-
-			if (targetElement?.closest(".contact-section, .portfolio-section")) {
-				resetTarget();
-				return;
-			}
-
-			const target = targetElement?.closest(pressureSelector);
-
-			if (!target) {
-				resetTarget();
-				return;
-			}
-
-			if (activeTarget && activeTarget !== target) resetTarget();
-
-			activeTarget = target;
-			const rect = activeTarget.getBoundingClientRect();
-			const x = (event.clientX - rect.left) / rect.width;
-			const y = (event.clientY - rect.top) / rect.height;
-			const tiltX = (0.5 - y) * 4;
-			const tiltY = (x - 0.5) * 5;
-
-			activeTarget.classList.add("is-pressure-active");
-			activeTarget.style.setProperty("--surface-press", "2px");
-			activeTarget.style.setProperty("--surface-tilt-x", `${tiltX.toFixed(2)}deg`);
-			activeTarget.style.setProperty("--surface-tilt-y", `${tiltY.toFixed(2)}deg`);
-		},
-		{ passive: true },
-	);
-
-	window.addEventListener("pointerdown", () => {
-		if (activeTarget) activeTarget.style.setProperty("--surface-press", "4px");
-	});
-
-	window.addEventListener("pointerup", () => {
-		if (activeTarget) activeTarget.style.setProperty("--surface-press", "2px");
-	});
-
-	window.addEventListener("pointerleave", resetTarget);
-	window.addEventListener("blur", resetTarget);
-}
-
-function setupCursorGlow() {
-	const glow = document.querySelector(".cursor-glow");
-	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-	const prefersReducedMotion = window.matchMedia(
-		"(prefers-reduced-motion: reduce)",
-	).matches;
-
-	if (!glow || !canHover || prefersReducedMotion) return;
-
-	let pointerX = window.innerWidth / 2;
-	let pointerY = window.innerHeight / 2;
-	let glowX = pointerX;
-	let glowY = pointerY;
-	let animationFrame = 0;
-
-	const renderGlow = () => {
-		glowX += (pointerX - glowX) * 0.2;
-		glowY += (pointerY - glowY) * 0.2;
-		glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate3d(-50%, -50%, 0)`;
-		animationFrame = window.requestAnimationFrame(renderGlow);
-	};
-
-	window.addEventListener(
-		"pointermove",
-		(event) => {
-			pointerX = event.clientX;
-			pointerY = event.clientY;
-			document.body.classList.add("has-cursor-glow");
-
-			if (!animationFrame) renderGlow();
-		},
-		{ passive: true },
-	);
-
-	window.addEventListener("pointerleave", () => {
-		document.body.classList.remove("has-cursor-glow");
-	});
-
-	window.addEventListener("blur", () => {
-		document.body.classList.remove("has-cursor-glow");
-	});
-}
-
 function setupPortfolioToggle() {
 	if (!portfolioToggle || !portfolioProjects) return;
 
@@ -469,81 +280,49 @@ function setupPortfolioToggle() {
 	});
 }
 
-function setupHomeMotion() {
+function setupHeroParallax() {
 	const prefersReducedMotion = window.matchMedia(
 		"(prefers-reduced-motion: reduce)",
 	).matches;
-	const parallaxItems = document.querySelectorAll("[data-parallax]");
-	const principleSection = document.querySelector(".principle-section");
-	const principlePin = document.querySelector(".principle-pin");
-	const principlePanels = document.querySelectorAll("[data-principle-panel]");
+	const heroMockup = document.querySelector("[data-hero-parallax]");
+	const depthScene = document.querySelector("[data-depth-scene]");
+	const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-	if (prefersReducedMotion) {
-		principlePanels[0]?.classList.add("is-active");
-		return;
-	}
-
-	const setActivePrinciple = (activeIndex) => {
-		principlePanels.forEach((panel, index) => {
-			panel.classList.toggle("is-active", index === activeIndex);
-		});
-	};
-
-	const hasGsap =
-		window.gsap && window.ScrollTrigger && principleSection && principlePin;
-
-	if (hasGsap) {
-		window.gsap.registerPlugin(window.ScrollTrigger);
-
-		if (principlePanels.length) {
-			window.ScrollTrigger.create({
-				trigger: principleSection,
-				start: "top top",
-				end: "+=220%",
-				pin: principlePin,
-				scrub: true,
-				onUpdate: (self) => {
-					const index = clampNumber(
-						Math.floor(self.progress * principlePanels.length),
-						0,
-						principlePanels.length - 1,
-					);
-					setActivePrinciple(index);
-				},
-			});
-		}
-
-		parallaxItems.forEach((item) => {
-			const speed = Number(item.dataset.speed || 0.08);
-			window.gsap.to(item, {
-				y: () => Math.round(speed * 220),
-				ease: "none",
-				scrollTrigger: {
-					trigger: item,
-					start: "top bottom",
-					end: "bottom top",
-					scrub: true,
-				},
-			});
-		});
-
-		return;
-	}
+	if ((!heroMockup && !depthScene) || prefersReducedMotion) return;
 
 	let parallaxQueued = false;
+	let lastScrollY = window.scrollY;
+	let windY = 0;
+
 	const updateParallax = () => {
 		parallaxQueued = false;
-		const viewportCenter = window.innerHeight / 2;
+		const scrollDelta = window.scrollY - lastScrollY;
+		lastScrollY = window.scrollY;
+		windY += (clampNumber(scrollDelta, -80, 80) - windY) * 0.16;
+		depthScene?.style.setProperty("--wind-y", `${windY.toFixed(2)}px`);
 
-		parallaxItems.forEach((item) => {
-			const speed = Number(item.dataset.speed || 0.08);
-			const rect = item.getBoundingClientRect();
-			const distance = rect.top + rect.height / 2 - viewportCenter;
-			item.style.setProperty(
-				"--parallax-y",
-				`${Math.round(distance * speed * -0.18)}px`,
-			);
-		});
+		if (!heroMockup || !canHover) return;
+		const viewportCenter = window.innerHeight / 2;
+		const rect = heroMockup.getBoundingClientRect();
+		const distance = rect.top + rect.height / 2 - viewportCenter;
+		heroMockup.style.setProperty(
+			"--parallax-y",
+			`${Math.round(distance * -0.018)}px`,
+		);
+	};
+
+	const updateScene = (event) => {
+		if (!depthScene || !canHover) return;
+		const x = (event.clientX / window.innerWidth - 0.5) * 24;
+		const y = (event.clientY / window.innerHeight - 0.5) * 18;
+		depthScene.style.setProperty("--scene-x", `${x.toFixed(2)}px`);
+		depthScene.style.setProperty("--scene-y", `${y.toFixed(2)}px`);
+	};
+
+	const resetScene = () => {
+		if (!depthScene) return;
+		depthScene.style.setProperty("--scene-x", "0px");
+		depthScene.style.setProperty("--scene-y", "0px");
 	};
 
 	const scheduleParallax = () => {
@@ -554,6 +333,10 @@ function setupHomeMotion() {
 
 	window.addEventListener("scroll", scheduleParallax, { passive: true });
 	window.addEventListener("resize", scheduleParallax);
+	if (canHover) {
+		window.addEventListener("pointermove", updateScene, { passive: true });
+		window.addEventListener("pointerleave", resetScene);
+	}
 	updateParallax();
 }
 
@@ -652,10 +435,7 @@ contactForm?.addEventListener("submit", async (event) => {
 });
 
 setupReveal();
-setupPhonePointerEffect();
-setupPagePressure();
-setupCursorGlow();
 setupPortfolioToggle();
-setupHomeMotion();
+setupHeroParallax();
 setupPackageQueryPrefill();
 updateScrollState();
