@@ -1846,17 +1846,6 @@ p {
   color: var(--color-accent);
 }
 
-.footer-social-link {
-  color: var(--color-muted);
-  font-weight: 750;
-  text-decoration: none;
-  transition: color 180ms ease;
-}
-
-.footer-social-link:hover {
-  color: var(--color-accent);
-}
-
 .package-spotlight {
   position: fixed;
   inset: 0;
@@ -2091,10 +2080,6 @@ p {
 
   .footer-inner > * {
     flex: 1 1 100%;
-  }
-
-  .footer-social-link {
-    flex: 0 0 auto;
   }
 
   .brand-logo-footer {
